@@ -4,7 +4,7 @@ To have a look at the API in the Swagger Editor, open:
 
 http://editor.swagger.io/#/?import=https://raw.githubusercontent.com/OscarScholten/hippo-rest-api/master/hippo-rest-api.json
 
-I'm eagerly awaiting the pull requests (look for those shark cookies!).
+I'm eagerly awaiting the pull requests (look for those shark cookies! the first person to find all three wins a [prize](http://www.amazon.com/Ready-Player-One-A-Novel/dp/0307887448))
 
 Sincerely yours, Oscar
 
