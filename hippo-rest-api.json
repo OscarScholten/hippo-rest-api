@@ -3,51 +3,24 @@
     "info": {
         "version": "0.1.0",
         "title": "Hippo AUTO Rest API",
-        "description": "Draft for the Auto REST API, shows the resources and their operations when the following content types are available:\n  - news\n  - events\n"
+        "description": "Draft for the Hippo REST API, I'm exited to hear your feedback! Some notes below.\n\n  - This is a read-only API.\n  \n  - Several resources are \"auto generated\" based on the document types in the project. This project was generated using Essentials and has the News and Event features enabled.\n    \n  - The API contains some resources that are out of scope according for [PSP1](https://docs.google.com/presentation/d/1Xy1iujhB_053U-ZlVy7DvaZElrrVgG2UTUjcEvzpv1I/edit#slide=id.p), but are included to inspire discussion on the future direction of this API.\n",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
     },
-    "host": "autorest.localhost",
     "basePath": "/",
     "paths": {
-        "/types": {
+        "/content/documents": {
             "get": {
                 "responses": {
                     "200": {
-                        "description": "Returns a list of all available content types"
+                        "description": "Returns a list of all documents sorted by date-last-published"
                     }
                 }
             }
         },
-        "/types/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "id, \"news\" or \"events\"",
-                    "type": "string",
-                    "required": true
-                }
-            ],
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Returns the details of the requested content type"
-                    },
-                    "404": {
-                        "description": "Unknown content type"
-                    }
-                }
-            }
-        },
-        "/documents/all": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Returns a list of all documents sorted by date-last-modified"
-                    }
-                }
-            }
-        },
-        "/documents/all/{uuid}": {
+        "/content/documents/{uuid}": {
             "parameters": [
                 {
                     "name": "uuid",
@@ -63,17 +36,29 @@
                         "description": "Returns the details of the requested document"
                     },
                     "404": {
-                        "description": "Document not found - note that this could be because the uuid exists, but it does not point to a document. TODO discuss whether this must be logged in the structured error message, imho it must not, and it also must not redirect to a resource where the uuid is valid, for instance a folder.\n"
+                        "description": "Document not found\n"
+                    },
+                    "418": {
+                        "description": "This is not a \"document\": the UUID is valid, but it's a folder, or something else\n"
                     }
                 }
             }
         },
-        "/documents/{type-id}": {
+        "/content/myhippoproject:news": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all documents of type \"myhippoproject:news\" sorted by date-last-published, analogous to \"/content/documents/\""
+                    }
+                }
+            }
+        },
+        "/content/myhippoproject:news/{uuid}": {
             "parameters": [
                 {
-                    "name": "type-id",
+                    "name": "uuid",
                     "in": "path",
-                    "description": "type id, \"news\" or \"events\"",
+                    "description": "uuid (formatted as uuid)",
                     "type": "string",
                     "required": true
                 }
@@ -81,10 +66,82 @@
             "get": {
                 "responses": {
                     "200": {
-                        "description": "Returns a list of all documents sorted by date-last-modified"
+                        "description": "Analogous to \"/content/documents/{uuid}\""
+                    }
+                }
+            }
+        },
+        "/content/myhippoproject:events": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Analogous to \"/content/myhippoproject:news\""
+                    }
+                }
+            }
+        },
+        "/content/myhippoproject:events/{uuid}": {
+            "parameters": [
+                {
+                    "name": "uuid",
+                    "in": "path",
+                    "description": "uuid (formatted as uuid)",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Analogous to \"/content/news/{uuid}\""
+                    }
+                }
+            }
+        },
+        "/types": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all available content types"
+                    }
+                }
+            }
+        },
+        "/types/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "id, \"myhippoproject:news\" or \"myhippoproject:events\"",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns the details of the requested content type"
                     },
                     "404": {
                         "description": "Unknown content type"
+                    }
+                }
+            }
+        },
+        "/content/[{path}]": {
+            "parameters": [
+                {
+                    "name": "path",
+                    "in": "path",
+                    "description": "examples: \"GET /content/[/documents/myhippoproject/news/]\" returns the list of all folders and documents in the \"news\" folder. \"GET /content/[/documents/myhippoproject/news/2015/12/the-medusa-news]\" returns the document found at that location. This produces the same output as \"GET /content/documents/c580ac64-3874-4717-a6d9-e5ad72080abe\". The [ ] notation around the path is necessary to visually separate the path from the resource and possible sub resources (e.g. \"GET /content/[/documents/myhippoproject/news/2015/12/the-medusa-news]/history\").",
+                    "type": "strin",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "See description"
                     }
                 }
             }
