@@ -1,0 +1,93 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.1.0",
+        "title": "Hippo AUTO Rest API",
+        "description": "Draft for the Auto REST API, shows the resources and their operations when the following content types are available:\n  - news\n  - events\n"
+    },
+    "host": "autorest.localhost",
+    "basePath": "/",
+    "paths": {
+        "/types": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all available content types"
+                    }
+                }
+            }
+        },
+        "/types/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "id, \"news\" or \"events\"",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns the details of the requested content type"
+                    },
+                    "404": {
+                        "description": "Unknown content type"
+                    }
+                }
+            }
+        },
+        "/documents/all": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all documents sorted by date-last-modified"
+                    }
+                }
+            }
+        },
+        "/documents/all/{uuid}": {
+            "parameters": [
+                {
+                    "name": "uuid",
+                    "in": "path",
+                    "description": "uuid (formatted as uuid)",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns the details of the requested document"
+                    },
+                    "404": {
+                        "description": "Document not found - note that this could be because the uuid exists, but it does not point to a document. TODO discuss whether this must be logged in the structured error message, imho it must not, and it also must not redirect to a resource where the uuid is valid, for instance a folder.\n"
+                    }
+                }
+            }
+        },
+        "/documents/{type-id}": {
+            "parameters": [
+                {
+                    "name": "type-id",
+                    "in": "path",
+                    "description": "type id, \"news\" or \"events\"",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Returns a list of all documents sorted by date-last-modified"
+                    },
+                    "404": {
+                        "description": "Unknown content type"
+                    }
+                }
+            }
+        }
+    }
+}
