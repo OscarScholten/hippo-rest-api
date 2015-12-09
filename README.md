@@ -7,3 +7,6 @@ http://editor.swagger.io/#/?import=https://raw.githubusercontent.com/OscarScholt
 Eagerly awaiting the pull requests (look for those shark cookies!).
 
 Sincerely yours, Oscar
+
+Some tips:
+- Get familiar with the "folding" [keyboard shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
