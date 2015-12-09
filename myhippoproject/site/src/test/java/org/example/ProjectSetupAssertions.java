@@ -30,7 +30,7 @@ import static org.junit.Assert.fail;
  *     <li>create a new Hippo project from the archetype</li>
  *     <li>start essentials, add the "news" and "events" features, validate the content is loaded ({@link #test_bootstrap_content_is_loaded()}</li>
  *     <li>enable the REST API, validate that the content is there ({@link #test_rest_api_is_loaded()})</li>
- *     <li>update the document types - steps TODO, validate that the content is updated ({@link #test_rest_api_is_updated_after_model_changes()} ()})</li>
+ *     <li>update the document types - steps TODO, validate that the content is updated ({@link #test_rest_api_is_updated_after_model_changes()})</li>
  * </ul>
  */
 public class ProjectSetupAssertions extends RepositoryTestCase {
