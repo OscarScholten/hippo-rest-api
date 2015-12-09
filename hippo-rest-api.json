@@ -3,7 +3,7 @@
     "info": {
         "version": "0.1.0",
         "title": "Hippo AUTO Rest API",
-        "description": "Draft for the Hippo REST API, I'm exited to hear your feedback! Some notes below.\n\n  - This is a read-only API.\n  \n  - Several resources are \"auto generated\" based on the document types in the project. This project was generated using Essentials and has the News and Event features enabled.\n    \n  - The API contains some resources that are out of scope according for [PSP1](https://docs.google.com/presentation/d/1Xy1iujhB_053U-ZlVy7DvaZElrrVgG2UTUjcEvzpv1I/edit#slide=id.p), but are included to inspire discussion on the future direction of this API.\n",
+        "description": "Draft for the Hippo REST API, I'm exited to hear your feedback! Some notes below.\n\n  - This is a read-only API.\n  \n  - Several resources are \"auto generated\" based on the document types in the project. This project was generated using Essentials and has the News and Event features enabled.\n    \n  - The API contains some resources that are out of scope for [PSP1](https://docs.google.com/presentation/d/1Xy1iujhB_053U-ZlVy7DvaZElrrVgG2UTUjcEvzpv1I/edit#slide=id.p), but are included to inspire discussion on the future direction of this API.\n",
         "license": {
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
