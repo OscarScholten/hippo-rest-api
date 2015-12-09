@@ -94,6 +94,29 @@
       <artifactId>hst-mock</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- dependencies for RepositoryTestCase -->
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-repository-testutils</artifactId>
+      <version>${hippo.repository.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-repository-engine</artifactId>
+      <version>${hippo.repository.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- dependencies to load project bootstrap content -->
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>myhippoproject-cms</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+      <type>pom</type>
+    </dependency>
   </dependencies>
   <build>
     <resources>
