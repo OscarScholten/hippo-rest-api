@@ -1,2 +1,6 @@
+myhippoproject/hippo-data/
+myhippoproject/essentials/overlays/
 **/target/
-myhippoproject/hippo-data
+**/.idea/
+**/*.iml
+**/*.swp
