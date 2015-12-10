@@ -4,7 +4,7 @@ info:
   title: Hippo AUTO Rest API
   description: Draft for the Hippo REST API, I'm exited to hear your feedback! Some notes below.
     
-      - This is a read-only API.
+      - This is a read-only API, with anonymous access only (no login/OAuth support yet).
       
       - Several resources are "auto generated" based on the document types in the project. This project was generated using Essentials and has the News and Event features enabled.
       
