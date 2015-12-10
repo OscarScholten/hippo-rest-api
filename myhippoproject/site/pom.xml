@@ -110,13 +110,13 @@
     </dependency>
 
     <!-- dependencies to load project bootstrap content -->
-    <dependency>
-      <groupId>org.example</groupId>
-      <artifactId>myhippoproject-cms</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-      <type>pom</type>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.example</groupId>-->
+      <!--<artifactId>myhippoproject-cms</artifactId>-->
+      <!--<version>${project.version}</version>-->
+      <!--<scope>test</scope>-->
+      <!--<type>pom</type>-->
+    <!--</dependency>-->
   </dependencies>
   <build>
     <resources>
