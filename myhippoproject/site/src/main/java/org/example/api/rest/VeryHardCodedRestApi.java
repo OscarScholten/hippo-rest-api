@@ -15,19 +15,62 @@
  */
 package org.example.api.rest;
 
+import javax.jcr.Session;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.hippoecm.repository.HippoStdPubWfNodeType;
+import org.onehippo.cms7.services.HippoServiceRegistry;
+import org.onehippo.cms7.services.search.query.Query;
+import org.onehippo.cms7.services.search.result.QueryResult;
+import org.onehippo.cms7.services.search.service.SearchService;
+import org.onehippo.cms7.services.search.service.SearchServiceException;
+import org.onehippo.cms7.services.search.service.SearchServiceFactory;
+
 @Produces("application/json")
 public class VeryHardCodedRestApi {
+
+    private Session session;
+
+    private SearchService getSearchService() throws SearchServiceException {
+        SearchServiceFactory searchServiceFactory = HippoServiceRegistry.getService(SearchServiceFactory.class,
+                Session.class.getName());
+        if (searchServiceFactory == null) {
+            throw new SearchServiceException();
+        }
+        return searchServiceFactory.createSearchService(session);
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
     @GET
     @Path("/content/documents")
     public Response getDocuments() {
-        return Response.status(500).entity("{\"message\":\"TODO - another TODO is to agree on error response guidelines\"}").build();
+        SearchService searchService = getSearchService();
+        Query query = searchService.createQuery()
+                .from("/content")
+                .ofType("myhippoproject:basedocument")
+                .returnParentNode()
+                .orderBy(HippoStdPubWfNodeType.HIPPOSTDPUBWF_PUBLICATION_DATE)
+                .descending();
+        QueryResult result = searchService.search(query);
+
+        // TODO use Jackson here
+        StringBuilder builder = new StringBuilder();
+        builder.append("{");
+        builder.append("  \"offset\": \"0\",");
+        builder.append("  \"max\":    \"20\",");
+        builder.append("  \"count\":  \"").append(result.getTotalHitCount()).append("\",");
+        builder.append("  \"more\":   \"false\",");
+        builder.append("  \"total\":  \"").append(result.getTotalHitCount()).append("\"");
+        builder.append("}");
+
+        return Response.status(200).entity(builder.toString()).build();
     }
 
     @GET

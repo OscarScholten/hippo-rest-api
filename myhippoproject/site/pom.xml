@@ -14,6 +14,23 @@
   <dependencies>
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-search-service-api</artifactId>
+      <version>${hippo.addon-search-service.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-search-service-jcr</artifactId>
+      <version>${hippo.addon-search-service.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-search-service-commons</artifactId>
+      <version>${hippo.addon-search-service.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-essentials-plugin-sdk-api</artifactId>
     </dependency>
     <dependency>
