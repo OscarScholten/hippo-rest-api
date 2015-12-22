@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   version: 0.1.0
   title: Hippo AUTO Rest API
-  description: Draft for the Hippo REST API, I'm exited to hear your feedback! Some notes below.
+  description: Draft for the Hippo REST API, I'm excited to hear your feedback! Some notes below.
     
       - This is a read-only API, with anonymous access only (no login/OAuth support yet).
       
@@ -17,13 +17,13 @@ info:
 basePath: /
 
 paths:
-  '/content/documents':
+  '/documents':
     get:
       responses:
         '200':
           description: Returns a list of all documents sorted by date-last-published
   
-  '/content/documents/{uuid}':
+  '/documents/{uuid}':
     parameters:
       - name: uuid
         in: path
@@ -39,13 +39,13 @@ paths:
         '418':
           description: This is not a "document"; the UUID is valid, but it's a folder, or something else
 
-  '/content/myhippoproject:news':
+  '/myhippoproject:news':
     get:
       responses:
         '200':
-          description: Returns a list of all documents of type "myhippoproject:news" sorted by date-last-published, analogous to "/content/documents/"
+          description: Returns a list of all documents of type "myhippoproject:news" sorted by date-last-published, analogous to "/documents/"
 
-  '/content/myhippoproject:news/{uuid}':
+  '/myhippoproject:news/{uuid}':
     parameters:
       - name: uuid
         in: path
@@ -55,15 +55,15 @@ paths:
     get:
       responses:
         '200':
-          description: Analogous to "/content/documents/{uuid}"
+          description: Analogous to "/documents/{uuid}"
 
-  '/content/myhippoproject:events':
+  '/myhippoproject:events':
     get:
       responses:
         '200':
-          description: Analogous to "/content/myhippoproject:news"
+          description: Analogous to "/myhippoproject:news"
 
-  '/content/myhippoproject:events/{uuid}':
+  '/myhippoproject:events/{uuid}':
     parameters:
       - name: uuid
         in: path
@@ -73,7 +73,7 @@ paths:
     get:
       responses:
         '200':
-          description: Analogous to "/content/news/{uuid}"
+          description: Analogous to "/myhippoproject:news/{uuid}"
 
   '/types':
     get:
@@ -95,11 +95,11 @@ paths:
         '404':
           description: Unknown content type
 
-  '/content/[{path}]':
+  '/folders/[{path}]':
     parameters:
       - name: path
         in: path
-        description: For instance "GET /content/[/documents/myhippoproject/news/]" returns the list of all folders and documents in the "news" folder. "GET /content/[/documents/myhippoproject/news/2015/12/the-medusa-news]" returns the document found at that location. This produces the same output as "GET /content/documents/c580ac64-3874-4717-a6d9-e5ad72080abe". The [ ] notation around the path is necessary to visually separate the path from the resource and possible sub resources (e.g. "GET /content/[/documents/myhippoproject/news/2015/12/the-medusa-news]/history").
+        description: For instance "GET /folders/[/documents/myhippoproject/news/]" returns the list of all folders and documents in the "news" folder. "GET /folders/[/documents/myhippoproject/news/2015/12/the-medusa-news]" returns the document found at that location. This produces the same output as "GET /documents/c580ac64-3874-4717-a6d9-e5ad72080abe". The [ ] notation around the path is necessary to visually separate the path from the resource and possible sub resources (e.g. "GET /folders/[/documents/myhippoproject/news/2015/12/the-medusa-news]/history").
         type: string
         required: true
     get:
