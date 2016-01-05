@@ -1,0 +1,64 @@
+{
+  "hippo:id": "/site/api/documents/1b5b5269-30c6-4bec-a054-ca47cdee2056",
+  "hippo:type": "myhippoproject:newsdocument",
+  "hippotranslation:locale": "en",
+  "_comment1": "hippo:translations must be explicitly requested as translation data is expensive to produce",
+  "hippo:translations": [
+    {
+      "hippo:id": "/site/api/documents/8e8353f2-9f60-4a3a-aece-b31f1f51e985",
+      "hippotranslation:locale": "nl"
+    }
+  ],
+
+  "_comment2": " ... simple properties ... ",
+
+  "myhippoproject:content-with-link-to-document": {
+    "hippostd:content":
+      " ... <a href='/site/api/documents/cc9934d6-af4f-46a9-8fce-a21f7296ef38' data-link-id='cc9934d6-af4f-46a9-8fce-a21f7296ef38'>document</a> ...",
+    "hippo:linked": [
+      {
+        "hippo:data-link-id": "cc9934d6-af4f-46a9-8fce-a21f7296ef38",
+        "hippo:id": "/site/api/documents/cc9934d6-af4f-46a9-8fce-a21f7296ef38",
+        "hippo:type": "myhippoproject:newsdocument",
+        "hippo:cross-channel": false,
+        "_comment": "hippo:urls must be explicitly requested for documents, similar to translation data",
+        "hippo:urls": [
+          { "hippo:type": "myhippoproject:newsdocument", "hippo:id": "/site/api/documents/cc9934d6-af4f-46a9-8fce-a21f7296ef38" },
+          { "hippo:type": "hippo:html", "hippo:id": "/site/news/my-news-article.html", "hippo:canonical": true },
+          { "hippo:type": "hippo:html", "hippo:id": "/site/general/my-news-article.html" }
+        ]
+      }
+    ]
+  },
+
+  "myhippoproject:content-with-link-to-binary": {
+    "hippostd:content":
+      " ... <a href='/site/api/binaries/a62d5ba7-424f-4b8e-870e-4493aa74f619' data-link-id='a62d5ba7-424f-4b8e-870e-4493aa74f619'>binary</a> ...",
+    "hippo:linked": [
+      {
+        "hippo:data-link-id": "a62d5ba7-424f-4b8e-870e-4493aa74f619",
+        "hippo:id": "/site/binaries/content/gallery/banners/2012/10/monday-traffic.png",
+        "hippo:type": "hippo:binary",
+        "_comment1": "hippo:urls must be explicitly requested for binaries as well, the ID points to the default binary",
+        "hippo:urls": [
+          {
+            "hippo:type": "myhippoproject:imageset",
+            "hippo:id": "/site/api/binaries/a62d5ba7-424f-4b8e-870e-4493aa74f619"
+          },
+          {
+            "hippo:type": "hippogallery:original",
+            "hippo:id": "/site/binaries/content/gallery/banners/2012/10/monday-traffic.png",
+            "hippo:default": true
+          },
+          {
+            "hippo:type": "hippogallery:thumbnail",
+            "hippo:id": "/site/binaries/thumbnailcontent/gallery/banners/2012/10/monday-traffic.png"
+          }
+        ],
+        "_comment2": "not happy yet with the modeling of the variants, but not sure whether to continue now either"
+      }
+    ]
+  },
+
+  "_comment3": " ... last part of REST response ... "
+}
